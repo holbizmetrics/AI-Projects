@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOP Leaking Million-Dollar Secrets to AI Companies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 98px,
+                rgba(255,255,255,0.03) 100px
+            ),
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 98px,
+                rgba(255,255,255,0.03) 100px
+            );
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+        
+        .warning-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 30px;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            background: #fff;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .problem-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff4444;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        .problem-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* AI Agents Section */
+        .ai-agents-section {
+            background: #fff;
+            padding: 100px 0;
+            color: #1a1a1a;
+        }
+        
+        .agents-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .agents-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .agent-evolution {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+        
+        .evolution-step {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+        
+        .evolution-step.highlight {
+            background: linear-gradient(135deg, #00d4ff20, #0099cc20);
+            border-color: #00d4ff;
+            transform: scale(1.1);
+        }
+        
+        .step-number {
+            background: #00d4ff;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .evolution-step h4 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .evolution-step p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .evolution-step em {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+        
+        .evolution-arrow {
+            font-size: 2rem;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .capability-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .capability-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .capability-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .capability-card h4 {
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .capability-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .capability-card li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .capability-card li::before {
+            content: '•';
+            color: #00d4ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .agent-security-focus {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .security-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .security-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .security-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            padding: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .security-icon.danger {
+            background: rgba(255, 68, 68, 0.1);
+        }
+        
+        .security-icon.secure {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .security-point h4 {
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        .security-point p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Custom GPT Section */
+        .custom-gpt-section {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .gpt-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .comparison-card {
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 2px solid;
+        }
+        
+        .comparison-card.danger {
+            background: rgba(255, 68, 68, 0.1);
+            border-color: #ff4444;
+        }
+        
+        .comparison-card.secure {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+        
+        .comparison-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .comparison-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .danger .comparison-list li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .secure .comparison-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .gpt-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-highlight {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-highlight h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+        
+        .use-case-examples {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .use-case-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #00d4ff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .use-case-card strong {
+            color: #00d4ff;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .solution-text h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .solution-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .solution-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .solution-features li::before {
+            content: '✓';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .solution-visual {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .shield-icon {
+            font-size: 5rem;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00d4ff; }
+            to { text-shadow: 0 0 30px #00d4ff, 0 0 40px #00d4ff; }
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            background: #f8f9fa;
+            padding: 100px 0;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .benefit-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            background: #1a1a1a;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #00d4ff;
+        }
+        
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #000, #1a1a2e);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .urgency-text {
+            font-size: 1.1rem;
+            color: #ff4444;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .gpt-comparison {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .agent-evolution {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .evolution-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .security-comparison {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .agent-security-focus {
+                padding: 30px 20px;
+            }
+            
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .problem-section,
+            .solution-section,
+            .custom-gpt-section,
+            .ai-agents-section,
+            .benefits-section,
+            .final-cta {
+                padding: 60px 0;
+            }
+            
+            .use-case-examples {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="warning-badge">⚠️ SECURITY ALERT</div>
+                <h1>STOP Leaking Million-Dollar Secrets to AI Companies</h1>
+                <p class="hero-subtitle">Every ChatGPT conversation with your business data is training their competitors. Protect your intellectual property with custom, secure AI solutions that keep YOUR data private.</p>
+                <button class="cta-button" onclick="scrollToContact()">Secure My Business Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">Your Confidential Data Is Being Weaponized Against You</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Competitor Intelligence</h3>
+                    <p>Every strategy, client list, and proprietary process you share with public AI becomes training data for your competition.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>IP Theft Risk</h3>
+                    <p>Your million-dollar innovations and trade secrets are being absorbed by AI systems owned by tech giants.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⚖️</div>
+                    <h3>Legal Liability</h3>
+                    <p>Client confidentiality breaches through AI platforms could result in devastating lawsuits and reputation damage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>Your Private AI Fortress</h2>
+                    <p>Imagine having ChatGPT's power, but locked down tighter than Fort Knox. Your data never leaves your control. Your competitors never see your strategies. Your clients' information stays confidential.</p>
+                    
+                    <ul class="solution-features">
+                        <li>100% Private - Your data never trains external models</li>
+                        <li>Custom Built - Tailored specifically for your business needs</li>
+                        <li>Military-Grade Security - Bank-level encryption and access controls</li>
+                        <li>Rapid Deployment - Up and running in 48 hours or less</li>
+                        <li>Unlimited Usage - No per-query costs or usage limits</li>
+                    </ul>
+                    
+                    <p><strong>Stop feeding your competition. Start protecting your empire.</strong></p>
+                </div>
+                <div class="solution-visual">
+                    <div class="shield-icon">🛡️</div>
+                    <h3>Your Business, Your Data, Your Control</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom GPT Section -->
+    <section class="custom-gpt-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Beyond ChatGPT: Your Custom AI Empire</h2>
+            <div class="custom-gpt-content">
+                <div class="gpt-comparison">
+                    <div class="comparison-card danger">
+                        <h3>❌ Public ChatGPT</h3>
+                        <ul class="comparison-list">
+                            <li>Your data trains OpenAI's models</li>
+                            <li>Competitors access same insights</li>
+                            <li>No industry-specific knowledge</li>
+                            <li>Generic responses for everyone</li>
+                            <li>Usage limits and costs per query</li>
+                            <li>Zero customization control</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card secure">
+                        <h3>✅ Your Custom GPT</h3>
+                        <ul class="comparison-list">
+                            <li>Your data stays 100% private</li>
+                            <li>Exclusive competitive advantage</li>
+                            <li>Trained on YOUR industry expertise</li>
+                            <li>Personalized for your business</li>
+                            <li>Unlimited usage, no extra costs</li>
+                            <li>Complete control and customization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="gpt-features-grid">
+                    <div class="feature-highlight">
+                        <div class="feature-icon">🧠</div>
+                        <h4>Industry-Specific Intelligence</h4>
+                        <p>Your Custom GPT learns your industry's language, regulations, and best practices. It becomes your most knowledgeable team member, available 24/7.</p>
+                    </div>
+                    <div class="feature-highlight">
+                        <div class="feature-icon">🔒</div>
+                        <h4>Proprietary Knowledge Base</h4>
+                        <p>Feed it your internal documents, procedures, and expertise. Your Custom GPT becomes a repository of your company's intellectual property.</p>
+                    </div>
+                    <div class="feature-highlight">
+                        <div class="feature-icon">⚡</div>
+                        <h4>Custom Workflows & Automation</h4>
+                        <p>Build automated processes specific to your business needs. From client onboarding to complex analysis - your Custom GPT handles it all.</p>
+                    </div>
+                </div>
+                
+                <div class="use-case-examples">
+                    <h3 style="text-align: center; margin-bottom: 40px; color: #00d4ff;">Real Custom GPT Applications</h3>
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <strong>Investment Firm:</strong> Custom GPT trained on proprietary market analysis, client portfolios, and risk management protocols. Provides instant insights without exposing strategies to competitors.
+                        </div>
+                        <div class="use-case-card">
+                            <strong>Law Firm:</strong> Legal GPT trained on case histories, precedents, and client confidential matters. Ensures attorney-client privilege while accelerating research.
+                        </div>
+                        <div class="use-case-card">
+                            <strong>Manufacturing:</strong> Operations GPT with supply chain data, vendor relationships, and production processes. Optimizes efficiency without revealing trade secrets.
+                        </div>
+                        <div class="use-case-card">
+                            <strong>Consulting:</strong> Strategy GPT loaded with client methodologies, frameworks, and confidential project data. Delivers expert-level advice instantly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">The Million-Dollar Protection You Can't Afford to Miss</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">$0</div>
+                    <h3>Data Breach Costs</h3>
+                    <p>Eliminate the risk of your sensitive information being exposed or misused by third-party AI providers.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">100%</div>
+                    <h3>Privacy Guarantee</h3>
+                    <p>Your conversations, documents, and strategies remain completely private and secure within your organization.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">24/7</div>
+                    <h3>Unlimited Access</h3>
+                    <p>No usage limits, no per-query fees. Your team can leverage AI power without restrictions or additional costs.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">48hr</div>
+                    <h3>Rapid Deployment</h3>
+                    <p>Get your custom secure AI solution deployed and operational within 48 hours of approval.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Section -->
+    <section class="ai-agents-section">
+        <div class="container">
+            <h2 class="section-title">Beyond Custom GPTs: Your AI Agent Workforce</h2>
+            <div class="agents-intro">
+                <p class="agents-subtitle">While Custom GPTs provide intelligent responses, AI Agents take action. They're your digital employees that work 24/7, handling complex tasks autonomously while maintaining absolute security.</p>
+            </div>
+            
+            <div class="agent-evolution">
+                <div class="evolution-step">
+                    <div class="step-number">1</div>
+                    <h4>ChatGPT</h4>
+                    <p>Answers questions<br><em>But shares your data</em></p>
+                </div>
+                <div class="evolution-arrow">→</div>
+                <div class="evolution-step">
+                    <div class="step-number">2</div>
+                    <h4>Custom GPT</h4>
+                    <p>Private responses<br><em>Trained on your data</em></p>
+                </div>
+                <div class="evolution-arrow">→</div>
+                <div class="evolution-step highlight">
+                    <div class="step-number">3</div>
+                    <h4>AI Agents</h4>
+                    <p>Takes action<br><em>Autonomous execution</em></p>
+                </div>
+            </div>
+            
+            <div class="agent-capabilities">
+                <h3 style="text-align: center; margin-bottom: 40px; color: #00d4ff;">What Your AI Agents Can Do</h3>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <div class="capability-icon">📊</div>
+                        <h4>Financial Analysis Agent</h4>
+                        <ul>
+                            <li>Monitor market conditions 24/7</li>
+                            <li>Generate investment reports</li>
+                            <li>Execute trades within parameters</li>
+                            <li>Alert on risk thresholds</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🤝</div>
+                        <h4>Client Management Agent</h4>
+                        <ul>
+                            <li>Automatically respond to inquiries</li>
+                            <li>Schedule meetings and follow-ups</li>
+                            <li>Generate personalized proposals</li>
+                            <li>Manage contract renewals</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">🎯</div>
+                        <h4>Business Intelligence Agent</h4>
+                        <ul>
+                            <li>Analyze competitor movements</li>
+                            <li>Track industry trends</li>
+                            <li>Generate strategic insights</li>
+                            <li>Predict market opportunities</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <div class="capability-icon">⚙️</div>
+                        <h4>Operations Agent</h4>
+                        <ul>
+                            <li>Automate routine processes</li>
+                            <li>Manage supply chains</li>
+                            <li>Optimize resource allocation</li>
+                            <li>Handle compliance monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="agent-security-focus">
+                <div class="security-comparison">
+                    <div class="security-point">
+                        <div class="security-icon danger">⚠️</div>
+                        <div>
+                            <h4>Public AI Agents (Zapier, etc.)</h4>
+                            <p>Your business processes flow through third-party systems, exposing your operational secrets and client data to external platforms.</p>
+                        </div>
+                    </div>
+                    <div class="security-point">
+                        <div class="security-icon secure">🛡️</div>
+                        <div>
+                            <h4>Your Private AI Agents</h4>
+                            <p>All automation happens within your secure environment. Your processes, data, and competitive advantages remain completely private.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">"After discovering our competitors were accessing similar insights through public AI platforms, we knew we needed a private solution. This custom GPT has given us a massive competitive advantage while keeping our strategies completely confidential."</p>
+                    <p class="testimonial-author">— Fortune 500 CEO (Identity Protected for Security)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <h2>Don't Let Another Day of Data Leakage Cost You Millions</h2>
+            <p class="urgency-text">Limited Availability - Only 5 Custom Solutions Per Month</p>
+            <button class="cta-button" onclick="openContact()">Schedule Secure Consultation</button>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">Confidential consultation. No obligations. Military-grade NDAs provided.</p>
+        </div>
+    </section>
+
+    <script>
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function openContact() {
+            // Open HubSpot meeting scheduler
+            window.open('https://meetings-eu1.hubspot.com/holger-morlok', '_blank');
+        }
+        
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all cards
+            document.querySelectorAll('.problem-card, .benefit-card, .testimonial').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
