@@ -593,6 +593,67 @@
             font-weight: 600;
         }
         
+        /* Personal Introduction */
+        .personal-intro {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 80px 0;
+        }
+        
+        .intro-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .intro-image {
+            text-align: center;
+        }
+        
+        .consultant-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .consultant-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+        
+        .intro-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .intro-text strong {
+            color: #1a1a1a;
+        }
+        
+        .cta-button.secondary {
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            margin-top: 20px;
+        }
+        
+        .cta-button.secondary:hover {
+            background: linear-gradient(45deg, #333, #555);
+        }
+
         /* Social Proof */
         .social-proof {
             background: #1a1a1a;
@@ -677,6 +738,17 @@
                 padding: 30px 20px;
             }
             
+            .intro-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .consultant-photo {
+                width: 200px;
+                height: 200px;
+            }
+            
             .hero {
                 padding: 40px 0;
             }
@@ -686,6 +758,7 @@
             .custom-gpt-section,
             .ai-agents-section,
             .benefits-section,
+            .personal-intro,
             .final-cta {
                 padding: 60px 0;
             }
@@ -744,12 +817,12 @@
             <div class="solution-content">
                 <div class="solution-text">
                     <h2>Your Private AI Fortress</h2>
-                    <p>Imagine having ChatGPT's power, but locked down tighter than Fort Knox. Your data never leaves your control. Your competitors never see your strategies. Your clients' information stays confidential.</p>
+                    <p>Imagine having ChatGPT's power, but with complete data privacy and control. Your data never leaves your environment. Your competitors never see your strategies. Your clients' information stays completely confidential.</p>
                     
                     <ul class="solution-features">
                         <li>100% Private - Your data never trains external models</li>
                         <li>Custom Built - Tailored specifically for your business needs</li>
-                        <li>Military-Grade Security - Bank-level encryption and access controls</li>
+                        <li>Enterprise-Grade Security - Advanced encryption and access controls</li>
                         <li>Rapid Deployment - Up and running in 48 hours or less</li>
                         <li>Unlimited Usage - No per-query costs or usage limits</li>
                     </ul>
@@ -952,6 +1025,23 @@
                             <p>All automation happens within your secure environment. Your processes, data, and competitive advantages remain completely private.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Introduction -->
+    <section class="personal-intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-image">
+                    <img src="https://i.postimg.cc/ncfs2knC/Holger-Profile.jpg" alt="Holger Morlok - AI Security Consultant" class="consultant-photo">
+                </div>
+                <div class="intro-text">
+                    <h3>Secure Your AI Future</h3>
+                    <p>I help enterprise leaders protect their most valuable asset - their data - while leveraging the full power of artificial intelligence. With custom AI solutions, your sensitive information stays completely private while your team gains unprecedented capabilities.</p>
+                    <p><strong>Your intellectual property deserves better than public AI platforms.</strong></p>
+                    <button class="cta-button secondary" onclick="openContact()">Schedule Your Private Consultation</button>
                 </div>
             </div>
         </div>
