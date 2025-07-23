@@ -691,8 +691,33 @@
         .final-cta {
             background: linear-gradient(135deg, #000, #1a1a2e);
             padding: 100px 0;
-            text-align: center;
             color: white;
+        }
+        
+        .final-cta-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .final-photo {
+            flex-shrink: 0;
+        }
+        
+        .final-consultant-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .final-text {
+            text-align: center;
+            flex: 1;
         }
         
         .final-cta h2 {
@@ -753,6 +778,17 @@
                 padding: 40px 0;
             }
             
+            .final-cta-content {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .final-consultant-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
             .problem-section,
             .solution-section,
             .custom-gpt-section,
@@ -780,8 +816,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="warning-badge">⚠️ SECURITY ALERT</div>
-                <h1>STOP Leaking Million-Dollar Secrets to AI Companies</h1>
-                <p class="hero-subtitle">Every ChatGPT conversation with your business data is training their competitors. Protect your intellectual property with custom, secure AI solutions that keep YOUR data private.</p>
+                <h1>STOP Leaking Costly Secrets to AI Companies</h1>
+                <p class="hero-subtitle">Every ChatGPT conversation with your business data is potentially training their competitors. Protect your intellectual property with custom, secure AI solutions that keep YOUR data private.</p>
                 <button class="cta-button" onclick="scrollToContact()">Secure My Business Now</button>
             </div>
         </div>
@@ -800,7 +836,7 @@
                 <div class="problem-card">
                     <div class="problem-icon">💸</div>
                     <h3>IP Theft Risk</h3>
-                    <p>Your million-dollar innovations and trade secrets are being absorbed by AI systems owned by tech giants.</p>
+                    <p>Your wealth providing innovations and trade secrets are being absorbed by AI systems owned by tech giants.</p>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon">⚖️</div>
@@ -820,7 +856,7 @@
                     <p>Imagine having ChatGPT's power, but with complete data privacy and control. Your data never leaves your environment. Your competitors never see your strategies. Your clients' information stays completely confidential.</p>
                     
                     <ul class="solution-features">
-                        <li>100% Private - Your data never trains external models</li>
+                        <li>100% Private - Your data doesn't train external models</li>
                         <li>Custom Built - Tailored specifically for your business needs</li>
                         <li>Enterprise-Grade Security - Advanced encryption and access controls</li>
                         <li>Rapid Deployment - Up and running in 48 hours or less</li>
@@ -1062,10 +1098,17 @@
     <!-- Final CTA -->
     <section class="final-cta" id="contact">
         <div class="container">
-            <h2>Don't Let Another Day of Data Leakage Cost You Millions</h2>
-            <p class="urgency-text">Limited Availability - Only 5 Custom Solutions Per Month</p>
-            <button class="cta-button" onclick="openContact()">Schedule Secure Consultation</button>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">Confidential consultation. No obligations. Military-grade NDAs provided.</p>
+            <div class="final-cta-content">
+                <div class="final-photo">
+                    <img src="https://i.postimg.cc/ncfs2knC/Holger-Profile.jpg" alt="Holger Morlok" class="final-consultant-photo">
+                </div>
+                <div class="final-text">
+                    <h2>Don't Let Another Day of Data Leakage Cost You Millions</h2>
+                    <p class="urgency-text">Limited Availability - Only 5 Custom Solutions Per Month</p>
+                    <button class="cta-button" onclick="openContact()">Schedule Secure Consultation</button>
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">Confidential consultation. No obligations.</p>
+                </div>
+            </div>
         </div>
     </section>
 
